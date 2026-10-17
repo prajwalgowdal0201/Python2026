@@ -1,7 +1,6 @@
+"""A Semaphore caps how many operations run at once to avoid overloading a service."""
 import asyncio
 
-#limit how many concurrent tasks can run at once 
-#to prevent the service overload , a semaphore caps hopw many operations run at once 
 async def request():
     print("Request started")
     await asyncio.sleep(2)

@@ -1,3 +1,4 @@
+"""Sequential awaits take the sum of the waits; asyncio.gather overlaps them."""
 import asyncio
 from time import perf_counter
 

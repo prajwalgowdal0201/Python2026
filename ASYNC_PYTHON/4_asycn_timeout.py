@@ -1,5 +1,5 @@
+"""asyncio.timeout cancels the awaited operation and raises TimeoutError."""
 import asyncio
-#we can timeout async io operations also but should catch the execptions 
 
 async def request():
     print("Request started")

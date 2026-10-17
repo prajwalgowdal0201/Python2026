@@ -1,6 +1,4 @@
-#asyncio.create_task 
-#use create task to just start a task and continue , not wait for its result and collect it later. 
-#it just schedules the task to run in the background and returns immediately.
+"""create_task schedules a coroutine to run in the background and returns a Task."""
 import asyncio
 
 async def request(name:str)->str:
@@ -14,12 +12,8 @@ async def main():
     task2 = asyncio.create_task(request("B"))
     task3 = asyncio.create_task(request("C"))
 
-    #creatye task creates a coiroutine object and executes it but does not wait for its result immediately
-    # At this point, all tasks are running concurrently in the background.
-    #to get the results of these tasks, we need to await them or use asyncio.gather as shown below.
-
+    # Tasks start running once main() reaches an await.
     print("Tasks created:", task1, task2, task3)
-    # Wait for all tasks to complete and collect their results
     results = await asyncio.gather(task1, task2, task3)
     task4 = asyncio.create_task(request("D"))
     result_task4 = await task4
@@ -27,9 +21,7 @@ async def main():
     print("Result of task4:", result_task4)
 
 async def main2():
-    #using TaskGroup 
-    #taskgroup allows us to manage multiple tasks together and ensures that all tasks are completed before exiting
-    # the group.
+    # TaskGroup waits for all child tasks before leaving the block.
     async with asyncio.TaskGroup() as group:
         e= group.create_task(request("E"))
         f =group.create_task(request("F"))
